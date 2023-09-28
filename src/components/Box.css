@@ -9,8 +9,8 @@
 
 .box-list {
   display: flex;
-  flex-wrap: wrap; /* Allow boxes to wrap to the next line */
-  padding: 10px; /* Adjust padding as needed */
+  flex-wrap: wrap; 
+  padding: 10px; 
 }
 
 .box-container {

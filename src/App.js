@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Box from './components/Box';
 
 function App() {
   const [boxNum, setBoxNum] = useState(0);
   const [renderedBoxes, setRenderedBoxes] = useState([]);
+
+  useEffect(() => {
+    function handleResizing() {
+      let resizeTimer = setTimeout(() => {
+        const newBox = (<Box key={renderedBoxes.length}/>);
+        setRenderedBoxes([...renderedBoxes, newBox]);
+      }, 3000);
+
+      return () => {
+        window.removeEventListener('resize', handleResizing);
+        clearTimeout(resizeTimer);
+      }
+    }
+
+    window.addEventListener('resize', handleResizing);
+  }, [renderedBoxes]);
 
   const submitHandler = (event) => {
     event.preventDefault();
